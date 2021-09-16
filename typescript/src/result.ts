@@ -4,30 +4,18 @@ interface ResultOperators<E, T> {
   map<U>(fun: (t: T) => U): Result<E, U>
 
   flatMap<U>(fun: (t: T) => Result<E, U>): Result<E, U>
-
-  isSuccess(): this is Success<E, T>
-
-  isFailure(): this is Failure<E, T>
 }
 
 class Success<E, T> implements ResultOperators<E, T> {
   constructor(readonly value: T) {
   }
 
-  flatMap<U>(fun: (t: T) => Result<E, U>): Result<E, U> {
-    return fun(this.value);
-  }
-
   map<U>(fun: (t: T) => U): Result<E, U> {
     return success(fun(this.value));
   }
 
-  isSuccess(): this is Success<E, T> {
-    return true;
-  }
-
-  isFailure(): this is Failure<E, T> {
-    return false;
+  flatMap<U>(fun: (t: T) => Result<E, U>): Result<E, U> {
+    return fun(this.value);
   }
 }
 
@@ -35,20 +23,12 @@ class Failure<E, T> implements ResultOperators<E, T> {
   constructor(readonly error: E) {
   }
 
-  flatMap<U>(fun: (t: never) => Result<E, U>): Result<E, U> {
-    return this;
-  }
-
   map<U>(fun: (t: never) => U): Result<E, U> {
     return this;
   }
 
-  isSuccess(): this is Success<E, T> {
-    return false;
-  }
-
-  isFailure(): this is Failure<E, T> {
-    return true;
+  flatMap<U>(fun: (t: never) => Result<E, U>): Result<E, U> {
+    return this;
   }
 }
 
