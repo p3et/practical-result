@@ -1,10 +1,10 @@
-import {plusOneIfEven} from "./services";
 import {Result} from "./result";
+import {listService} from "./listService";
 
-const result: Result<String, number> = plusOneIfEven(2)
+const result: Result<String, number[]> = listService(4)
 
 const msg: String = result.isSuccess()
-                    ? `Yippie, we got ${result.value}!`
+                    ? result.value.join("-")
                     : result.error
 
 console.log(msg)
