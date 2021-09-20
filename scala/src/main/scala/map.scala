@@ -1,7 +1,7 @@
 import com.jambit.practicalresult.*
 
 @main def map: Unit =
-  val result: Either[String, Seq[Int]] = listService(4)
+  val result: Either[String, List[Int]] = listService(4)
 
   println(result)
 

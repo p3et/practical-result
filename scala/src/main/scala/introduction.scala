@@ -7,5 +7,5 @@ import com.jambit.practicalresult.*
     case Right(list) => list.mkString("-")
     case Left(err) => err
   }
-
+  
   println(msg)
