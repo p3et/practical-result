@@ -8,8 +8,8 @@ import scala.util.{Left, Right}
   println(result)
 
   val recovered: Either[String, List[Int]] = result match {
-    case Left(a) => Right(List())
     case Right(b) => result
+    case Left(a) => Right(List())
   }
 
   println(recovered)
