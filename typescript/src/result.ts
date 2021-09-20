@@ -4,6 +4,8 @@ interface ResultOperators<E, T> {
   map<U>(fun: (t: T) => U): Result<E, U>
 
   flatMap<U>(fun: (t: T) => Result<E, U>): Result<E, U>
+
+  recover(fun: (e: E) => Result<E, T>): Result<E, T>
 }
 
 class Success<E, T> implements ResultOperators<E, T> {
@@ -17,6 +19,10 @@ class Success<E, T> implements ResultOperators<E, T> {
   flatMap<U>(fun: (t: T) => Result<E, U>): Result<E, U> {
     return fun(this.value);
   }
+
+  recover(fun: (e: E) => Result<E, T>): Result<E, T> {
+    return this;
+  }
 }
 
 class Failure<E, T> implements ResultOperators<E, T> {
@@ -29,6 +35,10 @@ class Failure<E, T> implements ResultOperators<E, T> {
 
   flatMap<U>(fun: (t: never) => Result<E, U>): Result<E, U> {
     return this;
+  }
+
+  recover(fun: (e: E) => Result<E, T>): Result<E, T> {
+    return fun(this.error);
   }
 }
 
