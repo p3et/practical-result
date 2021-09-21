@@ -1,9 +1,9 @@
-import {isSuccess, Result} from "./result";
 import {listService} from "./listService";
+import {isSuccess, Result} from "for-comprehension-ts";
 
-const result: Result<String, number[]> = listService(4)
+const result: Result<number[], string> = listService(4)
 
-const msg: String = isSuccess(result)
+const msg: string = isSuccess(result)
                     ? result.value.join("-")
                     : result.error
 

@@ -1,7 +1,7 @@
-import {isFailure, isSuccess, Result} from "./result";
 import {listService} from "./listService";
+import {isFailure, isSuccess, Result} from "for-comprehension-ts";
 
-const results: Result<string, number[]>[] = [2, -1, 4].map(listService)
+const results: Result<number[], string>[] = [2, -1, 4].map(listService)
 
 const rights: number[][] = results.filter(isSuccess)
                                   .map(success => success.value)

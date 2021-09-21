@@ -1,13 +1,13 @@
-import {Result, success} from "./result";
 import {listService} from "./listService";
+import {Result, success} from "for-comprehension-ts";
 
-const results: Result<string, number[]>[] = [2, -1, 4].map(listService)
+const results: Result<number[], string>[] = [2, -1, 4].map(listService)
 
-const zero: Result<string, number[]> = success([])
+const zero: Result<number[], string> = success([])
 
-const combination : (collector: Result<string, number[]>, next: Result<string, number[]>) => Result<string, number[]> =
-  (collector, next) => collector.flatMap(cList => next.map(nList => cList.concat(nList)))
+const combination: (collector: Result<number[], string>, next: Result<number[], string>) => Result<number[], string> =
+    (collector, next) => collector.flatMap(cList => next.map(nList => cList.concat(nList)))
 
-const combined: Result<string, number[]> = results.reduce(combination, zero)
+const combined: Result<number[], string> = results.reduce(combination, zero)
 
 console.log(combined)

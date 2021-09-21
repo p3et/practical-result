@@ -1,10 +1,10 @@
-import {Result, success} from "./result";
 import {listService} from "./listService";
+import {Result, success} from "for-comprehension-ts";
 
-const result: Result<String, number[]> = listService(-1)
+const result: Result<number[], string> = listService(-1)
 
 console.log(result)
 
-const recovered: Result<String, number[]> = result.recover(msg => success([]))
+const recovered: Result<number[], string> = result.recover(msg => success([]))
 
 console.log(recovered)
