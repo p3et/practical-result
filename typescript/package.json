@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "for-comprehension-ts": "^1.0.0"
+    "for-comprehension-ts": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "^16.9.1",
