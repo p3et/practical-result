@@ -2,3 +2,5 @@
 */.idea/
 */target/*
 *.iml
+xcuserdata
+/swift/build
